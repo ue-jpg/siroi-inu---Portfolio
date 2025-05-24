@@ -40,10 +40,26 @@ header img {
 
 .profile-sections {
     display: flex;
-    gap: 20px;
+    gap: 0;
     flex: 1;
     margin: 30px;
     min-height: 0;
+    position: relative;
+}
+
+#resizer {
+    width: 8px;
+    cursor: ew-resize;
+    background: #bcaaa4;
+    margin: 0 4px;
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+#resizer:hover {
+    background: #8d6e63;
+}
+#bio, #work {
+    min-width: 100px;
 }
 
 #bio {
