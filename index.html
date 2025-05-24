@@ -1,6 +1,7 @@
 <html>
 <head>
     <title>siroi inu - Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
@@ -67,6 +68,7 @@
           </p>
           </div>
       </section>
+      <div id="resizer"></div>
       <section id="work">
           <h2>My Work</h2>
           <div class="project" id="project1">Project 1</div>
@@ -85,6 +87,38 @@
     <footer>
         <p>email → @@@mail.comcom</p>
     </footer>
+
+    <script>
+const resizer = document.getElementById('resizer');
+const bio = document.getElementById('bio');
+const work = document.getElementById('work');
+let isResizing = false;
+
+resizer.addEventListener('mousedown', function(e) {
+    isResizing = true;
+    document.body.style.cursor = 'ew-resize';
+});
+
+document.addEventListener('mousemove', function(e) {
+    if (!isResizing) return;
+    const container = document.querySelector('.profile-sections');
+    const rect = container.getBoundingClientRect();
+    const offset = e.clientX - rect.left;
+    const totalWidth = rect.width;
+    // bioの幅を%で指定
+    let bioPercent = (offset / totalWidth) * 100;
+    bioPercent = Math.max(10, Math.min(90, bioPercent)); // 10%～90%の範囲に制限
+    bio.style.flex = `0 0 ${bioPercent}%`;
+    work.style.flex = `1 1 ${100 - bioPercent}%`;
+});
+
+document.addEventListener('mouseup', function() {
+    if (isResizing) {
+        isResizing = false;
+        document.body.style.cursor = '';
+    }
+});
+</script>
 </body>
 </html>
 
